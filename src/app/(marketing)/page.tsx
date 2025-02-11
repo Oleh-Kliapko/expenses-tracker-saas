@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Home() {
   return (
@@ -23,7 +22,7 @@ export default function Home() {
           lifetime access for $19.
         </p>
 
-        <div className="mt-10 space-x-3">
+        {/* <div className="mt-10 space-x-3">
           <div>
             <Link
               href="/app/dashboard"
@@ -38,7 +37,7 @@ export default function Home() {
               Register
             </Link>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

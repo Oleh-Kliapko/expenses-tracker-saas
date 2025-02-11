@@ -1,26 +1,16 @@
 "use client";
 
+import { routes } from "@/modules/constants";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-const routes = [
-  {
-    label: "Dashboard",
-    path: "/app/dashboard",
-  },
-  {
-    label: "Account",
-    path: "/app/account",
-  },
-];
 
 export default function AppHeader() {
   const pathname = usePathname();
 
   return (
     <header className="flex items-center border-b border-white/10 py-2">
-      <Link href="/app/dashboard">
+      <Link href={routes[0].path}>
         <Image src="/logo.png" alt="Logo" width={25} height={25} priority />
       </Link>
 

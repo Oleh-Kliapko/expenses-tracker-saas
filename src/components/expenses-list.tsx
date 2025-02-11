@@ -1,11 +1,6 @@
 "use client";
 
-const expenses = [
-  { id: 1, description: "Rent", amount: 1000 },
-  { id: 2, description: "Groceries", amount: 100 },
-  { id: 3, description: "Gas", amount: 50 },
-  { id: 4, description: "Insurance", amount: 200 },
-];
+import { expenses } from "@/modules/constants";
 
 export default function ExpensesList() {
   return (
