@@ -1,15 +1,9 @@
-import ExpensesForm from "@/components/expenses-form";
-import ExpensesList from "@/components/expenses-list";
+import { prisma } from "@/lib/db";
+import { IExpense } from "@/modules/interfaces";
+import Dashboard from "./dashboard";
 
-export default function Page() {
-  return (
-    <div>
-      <h1 className="text-3xl font-bold text-white text-center">Dashboard</h1>
+export default async function Page() {
+  const expenses: IExpense[] = await prisma.expense.findMany();
 
-      <div className="w-full max-w-[600px] mx-auto">
-        <ExpensesList />
-        <ExpensesForm />
-      </div>
-    </div>
-  );
+  return <Dashboard expenses={expenses} />;
 }
