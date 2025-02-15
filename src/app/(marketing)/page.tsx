@@ -1,4 +1,9 @@
 import Image from "next/image";
+import {
+  getKindeServerSession,
+  LoginLink,
+  RegisterLink,
+} from "@kinde-oss/kinde-auth-nextjs/server";
 
 export default function Home() {
   return (
@@ -22,22 +27,8 @@ export default function Home() {
           lifetime access for $19.
         </p>
 
-        {/* <div className="mt-10 space-x-3">
-          <div>
-            <Link
-              href="/app/dashboard"
-              className="bg-black text-white py-2 px-4 rounded-lg font-medium"
-            >
-              Login
-            </Link>
-            <Link
-              href="/app/dashboard"
-              className="bg-black/50 text-white py-2 px-4 rounded-lg font-medium"
-            >
-              Register
-            </Link>
-          </div>
-        </div> */}
+        <LoginLink>Login</LoginLink>
+        <RegisterLink>Register</RegisterLink>
       </div>
     </div>
   );
