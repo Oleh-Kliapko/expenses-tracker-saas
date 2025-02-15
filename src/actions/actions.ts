@@ -2,7 +2,10 @@
 
 import { prisma } from "@/lib/db";
 import { checkAuthenticationAndMembership } from "@/lib/server-utils";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+import Stripe from "stripe";
 
 export async function addExpense(formData: FormData) {
   const { id } = await checkAuthenticationAndMembership();
@@ -44,4 +47,33 @@ export async function deleteExpense(id: number) {
   });
 
   revalidatePath("/app/dashboard");
+}
+
+export async function createCheckoutSession() {
+  // authentication check
+  const { isAuthenticated, getUser } = getKindeServerSession();
+  if (!(await isAuthenticated())) {
+    return redirect("/api/auth/login");
+  }
+
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    apiVersion: "2025-01-27.acacia",
+  });
+
+  const user = await getUser();
+  const session = await stripe.checkout.sessions.create({
+    customer_email: user.email!,
+    client_reference_id: user.id,
+    line_items: [
+      {
+        price: "price_1QsqIyP4w89gYqnLtosTx6l3",
+        quantity: 1,
+      },
+    ],
+    mode: "payment",
+    success_url: `http://localhost:3000/app/dashboard?payment=success`,
+    cancel_url: `http://localhost:3000`,
+  });
+
+  redirect(session.url!);
 }

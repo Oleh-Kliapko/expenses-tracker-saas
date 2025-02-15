@@ -1,6 +1,6 @@
 "use client";
 
-import { deleteExpense } from "@/actions/actions";
+import { createCheckoutSession, deleteExpense } from "@/actions/actions";
 import { IExpense } from "@/modules/interfaces";
 import { LoginLink, LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 
@@ -69,7 +69,9 @@ export function LogoutBtn() {
 export function PurchaseBtn() {
   return (
     <button
-      onClick={async () => {}}
+      onClick={async () => {
+        await createCheckoutSession();
+      }}
       className="bg-black text-white px-4 py-2 rounded-lg font-medium"
     >
       Purchase
