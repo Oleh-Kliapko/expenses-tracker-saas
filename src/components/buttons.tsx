@@ -1,5 +1,8 @@
+"use client";
+
 import { deleteExpense } from "@/actions/actions";
 import { IExpense } from "@/modules/interfaces";
+import { LoginLink, LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 
 type DeleteBtnProps = {
   id: number;
@@ -39,6 +42,37 @@ export function SubmitBtn({ text }: { text: string }) {
       className="w-full bg-blue-500 text-white px-2 py-2 font-bold"
     >
       {text}
+    </button>
+  );
+}
+
+export function AuthBtn({ text }: { text: string }) {
+  return (
+    <LoginLink
+      className={`text-white py-2 px-4 rounded-lg font-medium ${
+        text === "Login" ? "bg-black" : "bg-black/30"
+      }`}
+    >
+      {text}
+    </LoginLink>
+  );
+}
+
+export function LogoutBtn() {
+  return (
+    <LogoutLink className="text-white/70 text-[12px] ml-[10px]">
+      Logout
+    </LogoutLink>
+  );
+}
+
+export function PurchaseBtn() {
+  return (
+    <button
+      onClick={async () => {}}
+      className="bg-black text-white px-4 py-2 rounded-lg font-medium"
+    >
+      Purchase
     </button>
   );
 }

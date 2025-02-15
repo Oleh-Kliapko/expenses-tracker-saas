@@ -1,20 +1,17 @@
 "use server";
 
 import { prisma } from "@/lib/db";
-// import { checkAuthenticationAndMembership } from "@/lib/server-utils";
-// import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { checkAuthenticationAndMembership } from "@/lib/server-utils";
 import { revalidatePath } from "next/cache";
-// import { redirect } from "next/navigation";
-// import Stripe from "stripe";
 
 export async function addExpense(formData: FormData) {
-  //   const user = await checkAuthenticationAndMembership();
+  const { id } = await checkAuthenticationAndMembership();
 
   await prisma.expense.create({
     data: {
       description: formData.get("description") as string,
       amount: Number(formData.get("amount")),
-      creatorId: "1", // user.id,
+      creatorId: id,
     },
   });
 
@@ -22,7 +19,7 @@ export async function addExpense(formData: FormData) {
 }
 
 export async function editExpense(formData: FormData, id: number) {
-  //   await checkAuthenticationAndMembership();
+  await checkAuthenticationAndMembership();
 
   await prisma.expense.update({
     where: {
@@ -38,7 +35,7 @@ export async function editExpense(formData: FormData, id: number) {
 }
 
 export async function deleteExpense(id: number) {
-  //   await checkAuthenticationAndMembership();
+  await checkAuthenticationAndMembership();
 
   await prisma.expense.delete({
     where: {

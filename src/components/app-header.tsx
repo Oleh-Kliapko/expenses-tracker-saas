@@ -1,10 +1,10 @@
 "use client";
 
-import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs";
-import { usePathname } from "next/navigation";
+import { routes } from "@/modules/constants";
 import Image from "next/image";
 import Link from "next/link";
-import { routes } from "@/modules/constants";
+import { usePathname } from "next/navigation";
+import { LogoutBtn } from "./buttons";
 
 export default function AppHeader() {
   const pathname = usePathname();
@@ -32,9 +32,7 @@ export default function AppHeader() {
         </ul>
       </nav>
 
-      <LogoutLink className="text-white/70 text-[12px] ml-[10px]">
-        Logout
-      </LogoutLink>
+      <LogoutBtn />
     </header>
   );
 }
