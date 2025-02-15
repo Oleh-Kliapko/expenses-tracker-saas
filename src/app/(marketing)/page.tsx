@@ -1,9 +1,5 @@
 import Image from "next/image";
-import {
-  getKindeServerSession,
-  LoginLink,
-  RegisterLink,
-} from "@kinde-oss/kinde-auth-nextjs/server";
+import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/server";
 
 export default function Home() {
   return (
@@ -26,9 +22,14 @@ export default function Home() {
           Use Expenses Tracker to easily keep track of your expenses. Get
           lifetime access for $19.
         </p>
-
-        <LoginLink>Login</LoginLink>
-        <RegisterLink>Register</RegisterLink>
+        <div className="mt-10 space-x-3">
+          <LoginLink className="bg-black text-white py-2 px-4 rounded-lg font-medium">
+            Login
+          </LoginLink>
+          <RegisterLink className="bg-black/30 text-white py-2 px-4 rounded-lg font-medium">
+            Register
+          </RegisterLink>
+        </div>
       </div>
     </div>
   );

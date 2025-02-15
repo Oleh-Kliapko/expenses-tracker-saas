@@ -15,7 +15,7 @@ export default function AppHeader() {
         <Image src="/logo.png" alt="Logo" width={25} height={25} priority />
       </Link>
 
-      <nav className="ml-auto">
+      <nav className="ml-auto mr-8">
         <ul className="flex gap-2 text-xs">
           {routes.map((route) => (
             <li key={route.path}>
