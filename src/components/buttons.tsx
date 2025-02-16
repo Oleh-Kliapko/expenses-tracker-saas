@@ -35,11 +35,20 @@ export function EditBtn({ expense, onEdit }: EditBtnProps) {
   );
 }
 
-export function SubmitBtn({ text }: { text: string }) {
+export function SubmitBtn({
+  text,
+  disabled,
+}: {
+  text: string;
+  disabled: boolean;
+}) {
   return (
     <button
+      disabled={!disabled}
       type="submit"
-      className="w-full bg-blue-500 text-white px-2 py-2 font-bold"
+      className={`w-full text-white px-2 py-2 font-bold ${
+        disabled ? " bg-blue-500" : "bg-black/10"
+      }`}
     >
       {text}
     </button>

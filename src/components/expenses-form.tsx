@@ -1,5 +1,8 @@
+"use client";
+
 import { useExpenseForm } from "@/hooks/useExpenseForm";
 import { IExpense } from "@/modules/interfaces";
+import { useEffect, useState } from "react";
 import { SubmitBtn } from "./buttons";
 
 type ExpensesFormProps = {
@@ -19,6 +22,12 @@ export default function ExpensesForm({
     buttonText,
     handleSubmit,
   } = useExpenseForm(expense, resetEditingExpense);
+
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    setIsFormValid(description.trim() !== "" && amount > 0);
+  }, [description, amount]);
 
   return (
     <form
@@ -41,7 +50,7 @@ export default function ExpensesForm({
         onChange={(e) => setAmount(Number(e.target.value))}
         className="w-full px-3 py-2 outline-none"
       />
-      <SubmitBtn text={buttonText} />
+      <SubmitBtn text={buttonText} disabled={isFormValid} />
     </form>
   );
 }

@@ -1,8 +1,7 @@
-import { AuthBtn, PurchaseBtn } from "@/components/buttons";
 import { prisma } from "@/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Image from "next/image";
-import Link from "next/link";
+import renderActionButtons from "./renderActionButtons";
 
 export default async function Home() {
   const { isAuthenticated, getUser } = getKindeServerSession();
@@ -44,21 +43,7 @@ export default async function Home() {
           lifetime access for $1.
         </p>
         <div className="mt-10 space-x-3">
-          {!isLoggedIn ? (
-            <>
-              <AuthBtn text="Login" />
-              <AuthBtn text="Register" />
-            </>
-          ) : !isPayingMember ? (
-            <PurchaseBtn />
-          ) : (
-            <Link
-              href="/app/dashboard"
-              className="bg-black text-white py-2 px-4 rounded-lg font-medium"
-            >
-              Go to dashboard
-            </Link>
-          )}
+          {renderActionButtons(isLoggedIn, isPayingMember)}
         </div>
       </div>
     </div>
