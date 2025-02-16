@@ -2,6 +2,7 @@ import { prisma } from "@/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Image from "next/image";
 import renderActionButtons from "./renderActionButtons";
+import { MembershipStatus } from "@prisma/client";
 
 export default async function Home() {
   const { isAuthenticated, getUser } = getKindeServerSession();
@@ -14,7 +15,7 @@ export default async function Home() {
     const membership = await prisma.membership.findFirst({
       where: {
         userId: user.id,
-        status: "ACTIVE",
+        status: MembershipStatus.ACTIVE,
       },
     });
     if (membership) {
