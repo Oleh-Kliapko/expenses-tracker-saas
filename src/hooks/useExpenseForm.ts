@@ -7,17 +7,17 @@ export function useExpenseForm(
   resetEditingExpense: () => void
 ) {
   const [description, setDescription] = useState("");
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState("");
   const [buttonText, setButtonText] = useState("Add Expense");
 
   useEffect(() => {
     if (expense) {
       setDescription(expense.description);
-      setAmount(expense.amount);
+      setAmount(expense.amount.toString());
       setButtonText("Edit Expense");
     } else {
       setDescription("");
-      setAmount(0);
+      setAmount("");
       setButtonText("Add Expense");
     }
   }, [expense]);
@@ -36,7 +36,7 @@ export function useExpenseForm(
     }
 
     setDescription("");
-    setAmount(0);
+    setAmount("");
     setButtonText("Add Expense");
   };
 

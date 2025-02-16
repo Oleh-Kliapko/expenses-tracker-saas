@@ -26,7 +26,9 @@ export default function ExpensesForm({
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
-    setIsFormValid(description.trim() !== "" && amount > 0);
+    setIsFormValid(
+      description.trim() !== "" && amount.trim() !== "" && Number(amount) > 0
+    );
   }, [description, amount]);
 
   return (
@@ -47,7 +49,7 @@ export default function ExpensesForm({
         name="amount"
         placeholder="Amount"
         value={amount}
-        onChange={(e) => setAmount(Number(e.target.value))}
+        onChange={(e) => setAmount(e.target.value)}
         className="w-full px-3 py-2 outline-none"
       />
       <SubmitBtn text={buttonText} disabled={isFormValid} />

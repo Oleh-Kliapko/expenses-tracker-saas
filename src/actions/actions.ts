@@ -26,7 +26,7 @@ export async function editExpense(formData: FormData, id: number) {
 
   await prisma.expense.update({
     where: {
-      id: id,
+      id,
     },
     data: {
       description: formData.get("description") as string,
@@ -42,7 +42,7 @@ export async function deleteExpense(id: number) {
 
   await prisma.expense.delete({
     where: {
-      id: id,
+      id,
     },
   });
 

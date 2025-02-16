@@ -1,5 +1,4 @@
-// Import PostHogProvider for analytics. It's commented out because it works only in USA/Canada/EU/ If you want to use it, you must switch on VPN
-// import { PostHogProvider } from "@/components/vendor/ph-provider";
+// import { PostHogProvider } from "@/components/vendor/ph-provider"; // Import PostHogProvider for analytics. It's commented out because it works only in USA/Canada/EU. If you want to use it, you must switch on VPN.
 
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
