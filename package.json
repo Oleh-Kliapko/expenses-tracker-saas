@@ -6,7 +6,8 @@
     "dev": "lsof -ti :3000 | xargs kill -9; next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@kinde-oss/kinde-auth-nextjs": "^2.5.1",
