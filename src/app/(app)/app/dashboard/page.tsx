@@ -1,8 +1,8 @@
-import { prisma } from "@/lib/db";
-import { checkAuthenticationAndMembership } from "@/lib/server-utils";
-import { IExpense } from "@/modules/interfaces";
-import { redirect } from "next/navigation";
-import Dashboard from "./dashboard";
+import { prisma } from '@/lib/db';
+import { checkAuthenticationAndMembership } from '@/lib/server-utils';
+import { IExpense } from '@/modules/interfaces';
+import { redirect } from 'next/navigation';
+import Dashboard from './dashboard';
 
 export default async function Page({
   searchParams,
@@ -11,10 +11,10 @@ export default async function Page({
 }) {
   const paymentValueFromUrl = (await searchParams).payment;
   const { id } = await checkAuthenticationAndMembership(
-    paymentValueFromUrl === "success" ? 5000 : 0
+    paymentValueFromUrl === 'success' ? 5000 : 0,
   );
-  if (paymentValueFromUrl === "success") {
-    return redirect("/app/dashboard");
+  if (paymentValueFromUrl === 'success') {
+    return redirect('/app/dashboard');
   }
 
   const expenses: IExpense[] = await prisma.expense.findMany({
